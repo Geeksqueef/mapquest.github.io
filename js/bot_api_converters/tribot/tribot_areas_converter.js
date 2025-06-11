@@ -9,7 +9,7 @@ export class TRiBotAreasConverter extends OSBotAreasConverter {
     
     constructor() {
         super();
-        this.javaArea = "BotTile";
+        this.javaArea = "BotArea";
         this.javaPosition = "BotTile";
     }
     
