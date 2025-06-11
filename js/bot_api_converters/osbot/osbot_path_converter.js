@@ -21,20 +21,21 @@ export class OSBotPathConverter extends OSBotConverter {
         var match;
         while ((match = re.exec(text))) {
             var values = match[1].split(",");
-            path.add(new Position(values[0], values[1], values[2]));
+            path.add(new Position(values[0], values[1]));
+            //path.add(new Position(values[0], values[1], values[2]));
         }
     }
     
     toRaw(path) {
         var output = "";
         for (var i = 0; i < path.positions.length; i++) {
-            output += `${path.positions[i].x},${path.positions[i].y},${path.positions[i].z}\n`;
+            output += `${path.positions[i].x},${path.positions[i].y}}\n`;
         }
         return output;
     }
     
     toJavaSingle(position) {
-        return `${this.javaPosition} position = new ${this.javaPosition}(${position.x}, ${position.y}, ${position.z});`;
+        return `${this.javaPosition} position = new ${this.javaPosition}(${position.x}, ${position.y});`;
     }
     
     toJavaArray(path) {
@@ -43,7 +44,7 @@ export class OSBotPathConverter extends OSBotConverter {
         } else if (path.positions.length > 1) {
             var output = `${this.javaPosition}[] path = {\n`;
             for (var i = 0; i < path.positions.length; i++) {
-                output += `    new ${this.javaPosition}(${path.positions[i].x}, ${path.positions[i].y}, ${path.positions[i].z})`;
+                output += `    new ${this.javaPosition}(${path.positions[i].x}, ${path.positions[i].y})`;
                 if (i != path.positions.length - 1) output += ",";
                 output += "\n";
             }
@@ -59,7 +60,7 @@ export class OSBotPathConverter extends OSBotConverter {
         } else if (path.positions.length > 1) {
             var output = `List&lt;${this.javaPosition}&gt; path = new ArrayList<>();\n`;
             for (var i = 0; i < path.positions.length; i++) {
-                output += `path.add(new ${this.javaPosition}(${path.positions[i].x}, ${path.positions[i].y}, ${path.positions[i].z}));\n`;
+                output += `path.add(new ${this.javaPosition}(${path.positions[i].x}, ${path.positions[i].y}));\n`;
             }
             return output;
         }
@@ -72,7 +73,7 @@ export class OSBotPathConverter extends OSBotConverter {
         } else if (path.positions.length > 1) {
             var output = `List&lt;${this.javaPosition}&gt; path = Arrays.asList(\n    new ${this.javaPosition}[]{\n`;
             for (var i = 0; i < path.positions.length; i++) {
-                output += `        new ${this.javaPosition}(${path.positions[i].x}, ${path.positions[i].y}, ${path.positions[i].z})`;
+                output += `        new ${this.javaPosition}(${path.positions[i].x}, ${path.positions[i].y})`;
                 if (i != path.positions.length - 1) output += ",";
                 output += "\n";
             }
