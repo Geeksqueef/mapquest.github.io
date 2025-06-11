@@ -9,7 +9,7 @@ export class TRiBotPolyAreaConverter extends OSBotPolyAreaConverter {
     constructor() {
         super();
         this.javaArea = "RSArea";
-        this.javaPosition = "RSTile";
+        this.javaPosition = "BotTile";
     }
     
     /*
