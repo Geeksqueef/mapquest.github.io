@@ -9,8 +9,8 @@ export class RuneLiteAreasConverter extends OSBotAreasConverter {
     
     constructor() {
         super();
-        this.javaArea = "WorldArea";
-        this.javaPosition = "WorldPoint";
+        this.javaArea = "BotArea";
+        this.javaPosition = "BotTile";
     }
     
     fromJava(text, areas) {
